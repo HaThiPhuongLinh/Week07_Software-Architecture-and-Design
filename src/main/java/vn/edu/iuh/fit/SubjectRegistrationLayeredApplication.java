@@ -34,5 +34,6 @@ public class SubjectRegistrationLayeredApplication implements CommandLineRunner 
         subjectServices.save(new Subject("Physics"));
         subjectServices.save(new Subject("History"));
         subjectServices.save(new Subject("Economy"));
+        subjectServices.save(new Subject("Test"));
     }
 }

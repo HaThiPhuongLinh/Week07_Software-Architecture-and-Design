@@ -25,4 +25,8 @@ public class SubjectServices {
     public List<Subject> findAll(){
         return subjectRepository.findAll();
     }
+
+    public void delete(long id){
+        subjectRepository.deleteById(id);
+    }
 }

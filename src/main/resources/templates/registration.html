@@ -6,8 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<div>t ad
-    <input type="hidden" name="studentId" th:value="1" />
+<div>
     <div class="flex justify-center font-bold text-4xl mt-4">Registration</div>
     <div class="flex justify-center mt-6">
         <table class="border border-blue-700 w-5/6 ">
@@ -19,8 +18,8 @@
             </tr>
             <tbody>
             <tr th:each="subject:${subjects}">
-                <form id="form-registration" method="post" th:action="@{/registrations/register/{studentId}(studentId=${studentId})}">
-                    <input type="hidden" name="studentId" value="1"/>
+                <form id="form-registration" method="post" th:action="@{/registrations/register}">
+                    <input type="hidden" name="studentId" th:value="${studentId}" />
                     <input type="hidden" name="subjectId" th:value="${subject.id}"/>
                     <td class="py-4 border border-blue-300 text-center" th:text="${subject.id}">
                         <!-- Subject ID -->

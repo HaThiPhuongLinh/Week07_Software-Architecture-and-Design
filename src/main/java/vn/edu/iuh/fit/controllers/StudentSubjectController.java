@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import vn.edu.iuh.fit.entities.Subject;
 import vn.edu.iuh.fit.services.StudentServices;
 import vn.edu.iuh.fit.services.StudentSubjectRegistration;
 import vn.edu.iuh.fit.services.SubjectServices;
@@ -20,16 +21,17 @@ public class StudentSubjectController {
     @Autowired
     private StudentSubjectRegistration studentSubjectRegistration;
 
-    @GetMapping("/{studentId}")
-    public String registration(Model model, @PathVariable long studentId) {
+    @GetMapping("")
+    public String registration(Model model, @RequestParam long studentId) {
+        model.addAttribute("studentId", studentId);
         model.addAttribute("subjects", subjectServices.findAll());
         model.addAttribute("registeredSubjects", studentServices.getAllResgisteredSubject(studentId));
         return "registration";
     }
 
-    @PostMapping("/register/{studentId}")
-    public String register(@PathVariable long studentId, @RequestParam long subjectId) {
+    @PostMapping("/register")
+    public String register(@RequestParam long studentId, @RequestParam long subjectId) {
         studentSubjectRegistration.register(studentId, subjectId);
-        return "redirect:/registrations/{studentId}";
+        return "redirect:/registrations?studentId=" + studentId;
     }
 }

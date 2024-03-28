@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div>
+    <div class="flex justify-center font-bold text-4xl mt-4">Registration</div>
+    <a class="ml-36 p-2 rounded-md bg-purple-600 text-white py-3 px-4 hover:underline" th:href="@{/subjects/create}">Create Subject</a>
+    <div class="flex justify-center mt-6">
+        <table class="border border-blue-700 w-5/6 ">
+            <thead class="text-base uppercase bg-blue-600 text-white">
+            <tr>
+                <th class="px-6 py-3 border border-blue-300">Subject ID</th>
+                <th class="px-6 py-3 border border-blue-300">Subject Name</th>
+                <th class="px-6 py-3 border border-blue-300">Action</th>
+            </tr>
+            <tbody>
+            <tr th:each="subject:${subjects}">
+                <input type="hidden" name="subjectId" th:value="${subject.id}"/>
+                <td class="py-4 border border-blue-300 text-center" th:text="${subject.id}">
+                    <!-- Subject ID -->
+                </td>
+                <td class="px-6 py-4 border border-blue-300" th:text="${subject.name}">
+                    <!-- Subject Name -->
+                </td>
+                <td class="px-2 py-4 border border-blue-300 text-center">
+                    <a class="bg-green-500 p-2 rounded-md text-white mr-6 py-2 px-4 hover:underline" th:href="@{/subjects/edit(id=${subject.id})}">
+                        Edit
+                    </a>
+                    <a class="bg-red-500 p-2 rounded-md text-white mr-6 py-2 px-4 hover:underline" th:href="@{/subjects/delete(id=${subject.id})}"
+                    onclick="return confirm('Are you sure?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>
